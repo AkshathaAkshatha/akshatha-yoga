@@ -28,6 +28,9 @@ SITE = {
     "city": "",
     # Notes from the Write page are delivered here.
     "email": "yogawithakshathap@gmail.com",
+    # FormSubmit's code for this inbox. It replaces the email address in the
+    # form action. Leave blank to use the email address itself.
+    "form_code": "82f05c9687d38b1991304129ba4cadb5",
     # Instagram name, without the @. Leave blank and the link stays hidden.
     "instagram": "akshatha.yoga",
     "language": "English",
@@ -510,10 +513,12 @@ def _schema(location: str, email: str, instagram_url: str) -> str:
 def build_context(current: str) -> dict:
     """Everything a page is allowed to show."""
     email = SITE["email"].strip()
+    form_code = SITE["form_code"].strip()
     instagram = SITE["instagram"].strip().lstrip("@").strip("/")
     instagram_url = f"https://www.instagram.com/{instagram}/" if instagram else ""
-    form_action = f"https://formsubmit.co/{email}" if email else ""
-    form_ajax = f"https://formsubmit.co/ajax/{email}" if email else ""
+    form_target = form_code or email
+    form_action = f"https://formsubmit.co/{form_target}" if form_target else ""
+    form_ajax = f"https://formsubmit.co/ajax/{form_target}" if form_target else ""
     location = _location()
     choices = [session["name"] for session in SESSIONS]
     choices.append("Not sure yet")

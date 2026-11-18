@@ -60,10 +60,14 @@
       },
       body: JSON.stringify(payload),
     }).then(function (response) {
-      if (!response.ok) {
-        throw new Error("send failed");
-      }
-      return response.json();
+      return response.json().catch(function () {
+        return {};
+      }).then(function (body) {
+        if (!response.ok || String(body.success) === "false") {
+          throw new Error("send failed");
+        }
+        return body;
+      });
     }).then(function () {
       showResult(form, form.getAttribute("data-sent") || "The note is on its way.");
       form.reset();
