@@ -158,20 +158,28 @@
     
 
     
+    <p class="where"><a href="mailto:yogawithakshathap@gmail.com">yogawithakshathap@gmail.com</a></p>
+    
   </header>
 
-  <form class="letter" data-letter data-email="" method="post" action="visit.html">
-    <p class="form-note">
-      Compose the note here, then copy it into an Instagram message. It stays on the page until you are ready to send it.
+  <form class="letter" data-letter data-email="yogawithakshathap@gmail.com" data-form-ajax="https://formsubmit.co/ajax/yogawithakshathap@gmail.com" data-sent="The note is on its way. I will read it." data-failed="The note did not leave this page. Please try again in a moment." method="post" action="https://formsubmit.co/yogawithakshathap@gmail.com">
+    <p class="form-note" data-letter-note>
+      This sends the note to me. I will read it and write back.
     </p>
+    
+    <input type="hidden" name="_subject" value="A note for Akshatha">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+    
 
     <div class="field">
       <label for="name">Your name</label>
       <input id="name" name="name" type="text" autocomplete="name" required>
     </div>
     <div class="field">
-      <label for="from">Your email</label>
-      <input id="from" name="from" type="email" autocomplete="email" required>
+      <label for="email">Your email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
     </div>
     <div class="field">
       <label for="session">Session</label>
@@ -189,26 +197,29 @@
       </select>
     </div>
     <div class="field">
-      <label for="note">Note</label>
-      <textarea id="note" name="note" placeholder="A few lines are plenty." spellcheck="true" required></textarea>
+      <label for="message">Note</label>
+      <textarea id="message" name="message" placeholder="A few lines are plenty." spellcheck="true" required></textarea>
     </div>
 
     <noscript>
       <p class="form-note">
+        
+        You can also write straight to <a href="mailto:yogawithakshathap@gmail.com">yogawithakshathap@gmail.com</a>.
         
       </p>
     </noscript>
 
     <div class="form-actions">
       <button class="button" type="submit">
-        Prepare the note
+        Send the note
       </button>
     </div>
 
     <div class="letter-ready" data-letter-ready hidden>
       <p class="kicker">Your note</p>
-      <pre data-letter-body></pre>
-      <button class="button button-quiet" type="button" data-copy>Copy the note</button>
+      <p data-letter-status>The note is on its way. I will read it.</p>
+      <pre data-letter-body hidden></pre>
+      <button class="button button-quiet" type="button" data-copy hidden>Copy the note</button>
     </div>
   </form>
 </div>
@@ -235,6 +246,8 @@
         
       </nav>
       <div class="footer-meta">
+        
+        <a href="mailto:yogawithakshathap@gmail.com">yogawithakshathap@gmail.com</a>
         
         
         

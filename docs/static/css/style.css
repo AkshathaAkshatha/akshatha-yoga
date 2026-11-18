@@ -752,6 +752,14 @@ h1 em {
   margin-bottom: 0.3rem;
 }
 
+.honey {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .letter {
   padding-top: 0;
 }

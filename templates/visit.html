@@ -31,18 +31,24 @@
     {% endif %}
   </header>
 
-  <form class="letter" data-letter data-email="{{ email }}" method="post" action="visit.html">
-    <p class="form-note">
+  <form class="letter" data-letter data-email="{{ email }}" data-form-ajax="{{ form_ajax }}" data-sent="{{ visit.sent_text }}" data-failed="{{ visit.send_failed }}" method="post" action="{{ form_action or 'visit.html' }}">
+    <p class="form-note" data-letter-note>
       {% if email %}{{ visit.send_ready }}{% else %}{{ visit.send_later }}{% endif %}
     </p>
+    {% if email %}
+    <input type="hidden" name="_subject" value="A note for Akshatha">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+    {% endif %}
 
     <div class="field">
       <label for="name">Your name</label>
       <input id="name" name="name" type="text" autocomplete="name" required>
     </div>
     <div class="field">
-      <label for="from">Your email</label>
-      <input id="from" name="from" type="email" autocomplete="email" required>
+      <label for="email">Your email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
     </div>
     <div class="field">
       <label for="session">Session</label>
@@ -54,8 +60,8 @@
       </select>
     </div>
     <div class="field">
-      <label for="note">Note</label>
-      <textarea id="note" name="note" placeholder="{{ visit.note_placeholder }}" spellcheck="true" required></textarea>
+      <label for="message">Note</label>
+      <textarea id="message" name="message" placeholder="{{ visit.note_placeholder }}" spellcheck="true" required></textarea>
     </div>
 
     <noscript>
@@ -74,8 +80,9 @@
 
     <div class="letter-ready" data-letter-ready hidden>
       <p class="kicker">{{ visit.ready_kicker }}</p>
-      <pre data-letter-body></pre>
-      <button class="button button-quiet" type="button" data-copy>Copy the note</button>
+      <p data-letter-status>{{ visit.sent_text }}</p>
+      <pre data-letter-body hidden></pre>
+      <button class="button button-quiet" type="button" data-copy hidden>Copy the note</button>
     </div>
   </form>
 </div>

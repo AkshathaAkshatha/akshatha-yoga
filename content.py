@@ -26,8 +26,8 @@ SITE = {
     "lives_in": "United Kingdom",
     # Add a city when you want one, for example "Bristol". Leave blank for now.
     "city": "",
-    # Your public email. Leave blank until you are ready to publish it.
-    "email": "",
+    # Notes from the Write page are delivered here.
+    "email": "yogawithakshathap@gmail.com",
     # Instagram name, without the @. Leave blank and the link stays hidden.
     "instagram": "akshatha.yoga",
     "language": "English",
@@ -392,13 +392,15 @@ VISIT = {
         "Follow the practice there. You can also send a message, "
         "and I will read it."
     ),
-    "button_send": "Open the letter",
+    "button_send": "Send the note",
     "button_draft": "Prepare the note",
-    "send_ready": "This opens a letter in your email app, addressed to me.",
+    "send_ready": "This sends the note to me. I will read it and write back.",
     "send_later": (
         "Compose the note here, then copy it into an Instagram message. "
         "It stays on the page until you are ready to send it."
     ),
+    "sent_text": "The note is on its way. I will read it.",
+    "send_failed": "The note did not leave this page. Please try again in a moment.",
     "ready_kicker": "Your note",
     "note_placeholder": "A few lines are plenty.",
 }
@@ -510,6 +512,8 @@ def build_context(current: str) -> dict:
     email = SITE["email"].strip()
     instagram = SITE["instagram"].strip().lstrip("@").strip("/")
     instagram_url = f"https://www.instagram.com/{instagram}/" if instagram else ""
+    form_action = f"https://formsubmit.co/{email}" if email else ""
+    form_ajax = f"https://formsubmit.co/ajax/{email}" if email else ""
     location = _location()
     choices = [session["name"] for session in SESSIONS]
     choices.append("Not sure yet")
@@ -528,6 +532,8 @@ def build_context(current: str) -> dict:
         "year": date.today().year,
         "location": location,
         "email": email,
+        "form_action": form_action,
+        "form_ajax": form_ajax,
         "instagram": instagram,
         "instagram_url": instagram_url,
         "session_choices": choices,
