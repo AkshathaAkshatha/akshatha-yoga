@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <p class="kicker">{{ about.kicker }}</p>
+  <h1>{{ about.title }} <em>{{ about.title_em }}</em></h1>
+  <p class="lede">{{ about.lede }}</p>
+  <p class="where">{{ site.from_place }} · {{ location }} · Classes in {{ site.language }}</p>
+</header>
+
+<div class="prose">
+  {% for paragraph in about.paragraphs %}
+  <p>{{ paragraph }}</p>
+  {% endfor %}
+</div>
+
+<figure class="name-note">
+  <p class="devanagari" lang="sa">{{ about.script }}</p>
+  <figcaption>
+    <strong>{{ about.script_meaning }}</strong>
+    {{ about.script_note }}
+  </figcaption>
+</figure>
+
+<section class="block" aria-labelledby="first-class">
+  <div class="section-head">
+    <p class="kicker">{{ about.begin_kicker }}</p>
+    <h2 id="first-class">{{ about.begin_title }}</h2>
+  </div>
+  <ol class="ledger">
+    {% for step in about.begin %}
+    <li>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+      <div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<p class="next-link"><a href="visit.html">Write the first note</a></p>
+{% endblock %}

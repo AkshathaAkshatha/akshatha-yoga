@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <p class="kicker">{{ practice.kicker }}</p>
+  <h1>{{ practice.title }} <em>{{ practice.title_em }}</em></h1>
+  <p class="lede">{{ practice.lede }}</p>
+</header>
+
+<div class="prose">
+  {% for paragraph in practice.paragraphs %}
+  <p>{{ paragraph }}</p>
+  {% endfor %}
+</div>
+
+<section class="block" aria-labelledby="class-order">
+  <div class="section-head">
+    <p class="kicker">{{ practice.order_kicker }}</p>
+    <h2 id="class-order">{{ practice.order_title }}</h2>
+  </div>
+  <ol class="ledger">
+    {% for step in practice.order %}
+    <li>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+      <div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<aside class="boundary">
+  <h2>{{ practice.boundary_title }}</h2>
+  <p>{{ practice.boundary }}</p>
+</aside>
+
+<p class="next-link"><a href="sessions.html">See the ways to meet</a></p>
+{% endblock %}

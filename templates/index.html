@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="kicker">{{ home.kicker }} · {{ location }}</p>
+    <h1>{{ home.title }} <em>{{ home.title_em }}</em></h1>
+    <p class="lede">{{ home.lede }}</p>
+    <div class="actions">
+      <a class="button" href="visit.html">Write to me</a>
+      <a class="button button-quiet" href="practice.html">See the practice</a>
+    </div>
+  </div>
+  <figure class="hero-mark">
+    {% include "includes/mark.html" %}
+    <figcaption>{{ home.mark_caption }}</figcaption>
+  </figure>
+</section>
+
+<section class="block" aria-labelledby="agreements">
+  <div class="section-head">
+    <p class="kicker">{{ home.principles_kicker }}</p>
+    <h2 id="agreements">{{ home.principles_title }}</h2>
+  </div>
+  <ol class="ledger">
+    {% for item in home.principles %}
+    <li>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+      <div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="block" aria-labelledby="who-for">
+  <div class="section-head">
+    <p class="kicker">{{ home.for_kicker }}</p>
+    <h2 id="who-for">{{ home.for_title }}</h2>
+    <p class="section-intro">{{ home.for_intro }}</p>
+  </div>
+  <ol class="ledger">
+    {% for item in home.for_items %}
+    <li>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+      <p>{{ item }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="block" aria-labelledby="site-map">
+  <div class="section-head">
+    <p class="kicker">{{ home.map_kicker }}</p>
+    <h2 id="site-map">{{ home.map_title }}</h2>
+  </div>
+  <ol class="ledger">
+    {% for item in home.map %}
+    <li>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+      <div>
+        <h3><a href="{{ item.key }}.html">{{ item.label }}</a></h3>
+        <p>{{ item.text }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="invite block" aria-labelledby="invite-title">
+  <h2 id="invite-title">{{ home.close_title }}</h2>
+  <p>{{ home.close_text }}</p>
+  <a class="button button-paper" href="visit.html">Write to me</a>
+</section>
+{% endblock %}

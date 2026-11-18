@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_meta.document_title }}</title>
+  <meta name="description" content="{{ page_meta.description }}">
+  <link rel="canonical" href="{{ page_meta.canonical }}">
+  <meta name="theme-color" content="#f4f1ea">
+  <meta property="og:title" content="{{ page_meta.document_title }}">
+  <meta property="og:description" content="{{ page_meta.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page_meta.canonical }}">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ page_meta.document_title }}">
+  <meta name="twitter:description" content="{{ page_meta.description }}">
+  {% if current == "missing" %}
+  <meta name="robots" content="noindex">
+  {% endif %}
+  <link rel="icon" href="static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+  {% if schema_json %}
+  <script type="application/ld+json">{{ schema_json|safe }}</script>
+  {% endif %}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="margin-note">{{ site.from_place }} · {{ location }}</p>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="index.html"{% if current == "home" %} aria-current="page"{% endif %}>
+        <span class="wordmark-name">{{ site.name }}</span>
+        <span class="wordmark-role">{{ site.role }}</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+      <nav id="site-nav" class="nav-links" aria-label="Primary">
+        {% for item in site.nav %}
+        <a href="{{ item.key }}.html"{% if current == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="wrap">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name">{{ site.name }}</p>
+        <p>Yoga teacher<br>{{ location }}</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="index.html">Home</a>
+        {% for item in site.nav %}
+        <a href="{{ item.key }}.html">{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+      <div class="footer-meta">
+        {% if email %}
+        <a href="mailto:{{ email }}">{{ email }}</a>
+        {% endif %}
+        {% if instagram %}
+        <a href="https://instagram.com/{{ instagram }}">Instagram</a>
+        {% endif %}
+        <p class="colophon">© {{ year }} {{ site.name }}. Newsreader and Outfit.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="static/js/site.js" defer></script>
+</body>
+</html>

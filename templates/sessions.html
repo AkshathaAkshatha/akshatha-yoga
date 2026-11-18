@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <p class="kicker">{{ session_page.kicker }}</p>
+  <h1>{{ session_page.title }} <em>{{ session_page.title_em }}</em></h1>
+  <p class="lede">{{ session_page.lede }}</p>
+</header>
+
+<div class="ledger ledger-loose">
+  {% for session in sessions %}
+  <article id="{{ session.name|lower|replace(' ', '-') }}">
+    <span class="num">{{ "%02d"|format(loop.index) }}</span>
+    <div>
+      <h2>{{ session.name }}</h2>
+      <p class="meta">{{ session.time }} · {{ session.where }}</p>
+      <p>{{ session.summary }}</p>
+      <ul class="plain-list">
+        {% for point in session.points %}
+        <li>{{ point }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<section class="block" aria-labelledby="practical">
+  <div class="section-head">
+    <p class="kicker">{{ session_page.shared_kicker }}</p>
+    <h2 id="practical">{{ session_page.shared_title }}</h2>
+  </div>
+  <div class="ledger">
+    {% for note in shared %}
+    <article>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+      <div>
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<p class="next-link"><a href="visit.html">Write to arrange an hour</a></p>
+{% endblock %}

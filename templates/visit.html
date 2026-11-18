@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="visit-layout">
+  <header class="page-head page-head-tight">
+    <p class="kicker">{{ visit.kicker }} · {{ location }}</p>
+    <h1>{{ visit.title }} <em>{{ visit.title_em }}</em></h1>
+    <p class="lede">{{ visit.lede }}</p>
+
+    <div class="prompt-block">
+      <p class="kicker">{{ visit.prompts_title }}</p>
+      <ul class="plain-list">
+        {% for prompt in visit.prompts %}
+        <li>{{ prompt }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% if email or instagram %}
+    <p class="where">
+      {% if email %}<a href="mailto:{{ email }}">{{ email }}</a>{% endif %}
+      {% if email and instagram %} · {% endif %}
+      {% if instagram %}<a href="https://instagram.com/{{ instagram }}">Instagram</a>{% endif %}
+    </p>
+    {% endif %}
+  </header>
+
+  <form class="letter" data-letter data-email="{{ email }}" method="post" action="visit.html">
+    <p class="form-note">
+      {% if email %}{{ visit.send_ready }}{% else %}{{ visit.send_later }}{% endif %}
+    </p>
+
+    <div class="field">
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label for="from">Your email</label>
+      <input id="from" name="from" type="email" autocomplete="email" required>
+    </div>
+    <div class="field">
+      <label for="session">Session</label>
+      <select id="session" name="session" required>
+        <option value="">Choose one</option>
+        {% for choice in session_choices %}
+        <option>{{ choice }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="note">Note</label>
+      <textarea id="note" name="note" placeholder="{{ visit.note_placeholder }}" spellcheck="true" required></textarea>
+    </div>
+
+    <noscript>
+      <p class="form-note">
+        {% if email %}
+        You can also write straight to <a href="mailto:{{ email }}">{{ email }}</a>.
+        {% endif %}
+      </p>
+    </noscript>
+
+    <div class="form-actions">
+      <button class="button" type="submit">
+        {% if email %}{{ visit.button_send }}{% else %}{{ visit.button_draft }}{% endif %}
+      </button>
+    </div>
+
+    <div class="letter-ready" data-letter-ready hidden>
+      <p class="kicker">{{ visit.ready_kicker }}</p>
+      <pre data-letter-body></pre>
+      <button class="button button-quiet" type="button" data-copy>Copy the note</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

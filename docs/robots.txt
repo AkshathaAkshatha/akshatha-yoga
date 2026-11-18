@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://akshathaakshatha.github.io/akshatha-yoga/sitemap.xml
