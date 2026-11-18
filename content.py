@@ -63,6 +63,11 @@ HOME = {
     "mark_caption": "Breath  ·  Strength  ·  Rest",
     "principles_kicker": "In the room",
     "principles_title": "Three agreements.",
+    "pictures": [
+        {"glyph": "breath", "label": "Breath", "box": "0 0 80 80"},
+        {"glyph": "stand", "label": "Strength", "box": "0 0 80 96"},
+        {"glyph": "rest", "label": "Rest", "box": "0 0 80 80"},
+    ],
     "principles": [
         {
             "title": "Breath before shape",
@@ -214,6 +219,7 @@ PRACTICE = {
 SESSIONS = [
     {
         "name": "Private",
+        "glyph": "one",
         "time": "About one hour",
         "where": "A quiet room, or online",
         "summary": (
@@ -228,6 +234,7 @@ SESSIONS = [
     },
     {
         "name": "Small group",
+        "glyph": "group",
         "time": "About one hour",
         "where": "In person",
         "summary": (
@@ -242,6 +249,7 @@ SESSIONS = [
     },
     {
         "name": "Online",
+        "glyph": "screen",
         "time": "About one hour",
         "where": "Your floor, and a screen",
         "summary": (

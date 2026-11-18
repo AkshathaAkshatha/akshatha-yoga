@@ -115,7 +115,129 @@ select {
 
 .wrap {
   width: min(var(--wide), calc(100% - (var(--gutter) * 2)));
+  max-width: 100%;
+  min-width: 0;
   margin-inline: auto;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.ig-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.ig-logo {
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 auto;
+}
+
+.ig-card {
+  justify-content: space-between;
+  width: min(100%, 28rem);
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: #fff;
+}
+
+.ig-card .ig-logo {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.button.ig-link .ig-logo {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.picture-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+  margin: clamp(2.8rem, 6vw, 4.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.picture-row li {
+  display: grid;
+  justify-items: center;
+  align-content: end;
+  gap: 0.7rem;
+  min-width: 0;
+  padding-top: 0.4rem;
+  text-align: center;
+}
+
+.picture-row .drawing {
+  display: block;
+  width: 4.75rem;
+  height: 4.75rem;
+  color: var(--clay);
+}
+
+.picture-row span,
+.page-art figcaption {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.page-split {
+  display: grid;
+  gap: 1.25rem;
+  align-items: end;
+  min-width: 0;
+}
+
+.page-split > * {
+  min-width: 0;
+}
+
+.page-art {
+  margin: 0;
+  color: var(--ink);
+}
+
+.page-art svg {
+  width: min(13rem, 78%);
+  height: auto;
+}
+
+.page-art figcaption {
+  margin-top: 0.7rem;
+}
+
+.ledger-mark {
+  display: grid;
+  justify-items: start;
+  gap: 0.35rem;
+}
+
+.drawing-small {
+  width: 3.25rem;
+  height: 3.25rem;
+  color: var(--clay);
+}
+
+.ledger > article:has(.ledger-mark) {
+  grid-template-columns: 4.6rem minmax(0, 1fr);
 }
 
 .kicker {
@@ -128,11 +250,19 @@ select {
   font-variant-numeric: lining-nums;
 }
 
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: break-word;
+}
+
 h1 {
+  max-width: 100%;
   font-family: var(--serif);
   font-weight: 450;
-  font-size: clamp(3rem, 0.8rem + 6vw, 6.15rem);
-  line-height: 0.98;
+  font-size: clamp(2.7rem, 0.8rem + 6vw, 6.15rem);
+  line-height: 1.02;
   letter-spacing: -0.035em;
   font-variation-settings: "opsz" 72, "wght" 450;
 }
@@ -264,8 +394,14 @@ h1 em {
 
 .hero {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: end;
+  min-width: 0;
+}
+
+.hero > * {
+  min-width: 0;
 }
 
 .hero-mark {
@@ -372,6 +508,12 @@ h1 em {
   display: grid;
   gap: 0.8rem;
   margin-bottom: 0.4rem;
+  min-width: 0;
+}
+
+.section-head > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .section-head h2,
@@ -379,10 +521,11 @@ h1 em {
 .invite h2 {
   font-family: var(--serif);
   font-weight: 450;
-  font-size: clamp(2rem, 1.35rem + 2vw, 3.2rem);
-  line-height: 1.12;
+  font-size: clamp(1.85rem, 1.2rem + 2vw, 3.2rem);
+  line-height: 1.15;
   letter-spacing: -0.03em;
-  max-width: 14em;
+  max-width: min(18em, 100%);
+  text-wrap: balance;
 }
 
 .section-intro {
@@ -742,6 +885,16 @@ main .wrap {
     gap: 3rem;
   }
 
+  .page-split {
+    grid-template-columns: minmax(0, 1.35fr) minmax(10rem, 0.6fr);
+    gap: 2rem;
+  }
+
+  .page-art {
+    justify-self: end;
+    padding-bottom: 0.4rem;
+  }
+
   .hero-mark {
     justify-self: end;
     padding-bottom: 0.4rem;
@@ -801,7 +954,8 @@ main .wrap {
     font-size: 1.15rem;
   }
 
-  .hero-mark {
+  .hero-mark,
+  .page-art {
     order: -1;
   }
 

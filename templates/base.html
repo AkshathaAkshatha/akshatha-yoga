@@ -26,6 +26,7 @@
   {% endif %}
 </head>
 <body>
+  {% include "includes/sprite.html" %}
   <a class="skip" href="#main">Skip to content</a>
   <p class="margin-note">{{ site.from_place }} · {{ location }}</p>
 
@@ -69,7 +70,10 @@
         <a href="mailto:{{ email }}">{{ email }}</a>
         {% endif %}
         {% if instagram_url %}
-        <a href="{{ instagram_url }}" rel="me noopener noreferrer" target="_blank">Follow @{{ instagram }}</a>
+        {% set extra = "" %}
+        {% set ig_id = "ig-footer" %}
+        {% set label = "Follow @" ~ instagram %}
+        {% include "includes/follow.html" %}
         {% endif %}
         <p class="colophon">© {{ year }} {{ site.name }}. Newsreader and Outfit.</p>
       </div>

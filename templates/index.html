@@ -16,6 +16,17 @@
   </figure>
 </section>
 
+<ul class="picture-row">
+  {% for picture in home.pictures %}
+  <li>
+    <svg class="drawing" viewBox="{{ picture.box }}" aria-hidden="true" focusable="false">
+      <use href="#g-{{ picture.glyph }}"></use>
+    </svg>
+    <span>{{ picture.label }}</span>
+  </li>
+  {% endfor %}
+</ul>
+
 <section class="block" aria-labelledby="agreements">
   <div class="section-head">
     <p class="kicker">{{ home.principles_kicker }}</p>
@@ -74,7 +85,10 @@
   <div class="actions">
     <a class="button button-paper" href="visit.html">Write to me</a>
     {% if instagram_url %}
-    <a class="button button-quiet" href="{{ instagram_url }}" rel="me noopener noreferrer" target="_blank">{{ home.instagram_label }}</a>
+    {% set label = home.instagram_label %}
+    {% set extra = "button button-quiet" %}
+    {% set ig_id = "ig-home" %}
+    {% include "includes/follow.html" %}
     {% endif %}
   </div>
 </section>

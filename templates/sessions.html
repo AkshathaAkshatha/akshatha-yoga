@@ -9,7 +9,12 @@
 <div class="ledger ledger-loose">
   {% for session in sessions %}
   <article id="{{ session.name|lower|replace(' ', '-') }}">
-    <span class="num">{{ "%02d"|format(loop.index) }}</span>
+    <div class="ledger-mark">
+      <svg class="drawing drawing-small" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <use href="#g-{{ session.glyph }}"></use>
+      </svg>
+      <span class="num">{{ "%02d"|format(loop.index) }}</span>
+    </div>
     <div>
       <h2>{{ session.name }}</h2>
       <p class="meta">{{ session.time }} · {{ session.where }}</p>

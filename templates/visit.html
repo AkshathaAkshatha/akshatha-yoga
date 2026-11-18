@@ -19,7 +19,10 @@
     <div class="prompt-block">
       <p class="kicker">{{ visit.instagram_kicker }}</p>
       <p>{{ visit.instagram_text }}</p>
-      <p class="next-link"><a href="{{ instagram_url }}" rel="me noopener noreferrer" target="_blank">Follow @{{ instagram }}</a></p>
+      {% set label = "Follow @" ~ instagram %}
+      {% set extra = "ig-card" %}
+      {% set ig_id = "ig-visit" %}
+      {% include "includes/follow.html" %}
     </div>
     {% endif %}
 
