@@ -68,8 +68,8 @@
         {% if email %}
         <a href="mailto:{{ email }}">{{ email }}</a>
         {% endif %}
-        {% if instagram %}
-        <a href="https://instagram.com/{{ instagram }}">Instagram</a>
+        {% if instagram_url %}
+        <a href="{{ instagram_url }}" rel="me noopener noreferrer" target="_blank">Follow @{{ instagram }}</a>
         {% endif %}
         <p class="colophon">© {{ year }} {{ site.name }}. Newsreader and Outfit.</p>
       </div>

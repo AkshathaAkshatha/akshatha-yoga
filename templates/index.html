@@ -71,6 +71,11 @@
 <section class="invite block" aria-labelledby="invite-title">
   <h2 id="invite-title">{{ home.close_title }}</h2>
   <p>{{ home.close_text }}</p>
-  <a class="button button-paper" href="visit.html">Write to me</a>
+  <div class="actions">
+    <a class="button button-paper" href="visit.html">Write to me</a>
+    {% if instagram_url %}
+    <a class="button button-quiet" href="{{ instagram_url }}" rel="me noopener noreferrer" target="_blank">{{ home.instagram_label }}</a>
+    {% endif %}
+  </div>
 </section>
 {% endblock %}

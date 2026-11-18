@@ -15,12 +15,16 @@
       </ul>
     </div>
 
-    {% if email or instagram %}
-    <p class="where">
-      {% if email %}<a href="mailto:{{ email }}">{{ email }}</a>{% endif %}
-      {% if email and instagram %} · {% endif %}
-      {% if instagram %}<a href="https://instagram.com/{{ instagram }}">Instagram</a>{% endif %}
-    </p>
+    {% if instagram_url %}
+    <div class="prompt-block">
+      <p class="kicker">{{ visit.instagram_kicker }}</p>
+      <p>{{ visit.instagram_text }}</p>
+      <p class="next-link"><a href="{{ instagram_url }}" rel="me noopener noreferrer" target="_blank">Follow @{{ instagram }}</a></p>
+    </div>
+    {% endif %}
+
+    {% if email %}
+    <p class="where"><a href="mailto:{{ email }}">{{ email }}</a></p>
     {% endif %}
   </header>
 

@@ -525,15 +525,32 @@ h1 em {
   color: rgba(244, 241, 234, 0.86);
 }
 
-.button-paper {
+.invite .actions {
   margin-top: 1.6rem;
+}
+
+.invite .button-paper {
   background: var(--paper);
   color: var(--ink);
   border-color: var(--paper);
 }
 
-.button-paper:hover {
+.invite .button-quiet {
+  color: var(--paper);
+  border-color: rgba(244, 241, 234, 0.5);
+  background: transparent;
+}
+
+.invite .button-quiet:hover {
+  background: rgba(244, 241, 234, 0.1);
+}
+
+.invite .button-paper:hover {
   background: #fff;
+}
+
+.prompt-block .next-link {
+  margin-top: 1rem;
 }
 
 .next-link {

@@ -29,7 +29,7 @@ SITE = {
     # Your public email. Leave blank until you are ready to publish it.
     "email": "",
     # Instagram name, without the @. Leave blank and the link stays hidden.
-    "instagram": "",
+    "instagram": "akshatha.yoga",
     "language": "English",
     # The free address GitHub Pages will use. Change this if you rename the repo.
     "public_url": "https://akshathaakshatha.github.io/akshatha-yoga",
@@ -122,8 +122,10 @@ HOME = {
     "close_title": "If you would like to practise together, write to me.",
     "close_text": (
         "Say where you are, what your body needs me to know, "
-        "and which kind of session you want. A short note is enough."
+        "and which kind of session you want. A short note is enough. "
+        "You can also follow, and write to me, on Instagram."
     ),
+    "instagram_label": "Follow on Instagram",
 }
 
 
@@ -377,12 +379,17 @@ VISIT = {
         "The days and times that are possible.",
         "Whether you would rather meet in person or online.",
     ],
+    "instagram_kicker": "Instagram",
+    "instagram_text": (
+        "Follow the practice there. You can also send a message, "
+        "and I will read it."
+    ),
     "button_send": "Open the letter",
     "button_draft": "Prepare the note",
     "send_ready": "This opens a letter in your email app, addressed to me.",
     "send_later": (
-        "The public address is being prepared. "
-        "Compose the note here, and it will stay on the page so you can copy it."
+        "Compose the note here, then copy it into an Instagram message. "
+        "It stays on the page until you are ready to send it."
     ),
     "ready_kicker": "Your note",
     "note_placeholder": "A few lines are plenty.",
@@ -473,7 +480,7 @@ def _page_meta(current: str) -> dict:
     }
 
 
-def _schema(location: str, email: str) -> str:
+def _schema(location: str, email: str, instagram_url: str) -> str:
     person = {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -485,13 +492,16 @@ def _schema(location: str, email: str) -> str:
     }
     if email:
         person["email"] = email
+    if instagram_url:
+        person["sameAs"] = [instagram_url]
     return json.dumps(person, ensure_ascii=False).replace("<", "\\u003c")
 
 
 def build_context(current: str) -> dict:
     """Everything a page is allowed to show."""
     email = SITE["email"].strip()
-    instagram = SITE["instagram"].strip().lstrip("@")
+    instagram = SITE["instagram"].strip().lstrip("@").strip("/")
+    instagram_url = f"https://www.instagram.com/{instagram}/" if instagram else ""
     location = _location()
     choices = [session["name"] for session in SESSIONS]
     choices.append("Not sure yet")
@@ -511,7 +521,8 @@ def build_context(current: str) -> dict:
         "location": location,
         "email": email,
         "instagram": instagram,
+        "instagram_url": instagram_url,
         "session_choices": choices,
         "page_meta": _page_meta(current),
-        "schema_json": _schema(location, email) if current == "home" else "",
+        "schema_json": _schema(location, email, instagram_url) if current == "home" else "",
     }
